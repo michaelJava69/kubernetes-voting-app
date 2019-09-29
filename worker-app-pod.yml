@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: worker-app-pod
+  labels:
+    name: worker-app-pod
+    app: demo-voting-app
+# Pod has containers , if Service i would have ports
+# goto docker images and find example voting app image
+# https://github.com/bfirsh/example-voting-app
+# worker image does not exposes at port 80 (internal application)
+spec:
+  containers:
+    - name: worker-app
+      image: dockersamples/examplevotingapp_worker
+
+

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+
+# we know that the worker app listens for postgress service on the host name db. This you will be told
+# so name here must be db. So here we describe the hande the service calling postgress uses
+metadata:
+  name: db
+  labels:
+    name: db-service
+    app: demo-voting-app
+# here we describe the pod that this service relates to
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    name: postgres-pod
+    app: demo-voting-app

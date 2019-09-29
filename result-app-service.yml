@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: result-service
+  labels:
+    name: result-service
+    app: demo-voting-app
+
+# this sits in front of the voting app
+# by default services are created with cluster ip and are only available in cluster
+# to enable the service to accessble outside cluster we must change the type of serrvice to
+# something else in this case Load Balancer
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: result-app-pod
+    app: demo-voting-app

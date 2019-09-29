@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-pod
+  labels:
+    name: redis-pod
+    app: demo-voting-app
+# Pod has containers , if Service i would have ports
+# goto docker images and find example voting app image
+# https://github.com/bfirsh/example-voting-app
+# image exposes at port 6379  in memory database port
+spec:
+  containers:
+    - name: redis
+      image: redis
+
+      ports:
+        - containerPort: 6379
+
